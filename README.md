@@ -1,4 +1,5 @@
 # Basic_Port_Scanner
+
 I developed this basic port scanner using concept of networking and python programming.
 
 A port scanner is basically a network tool which is used to identify open ports in the target system.
@@ -11,6 +12,7 @@ Important libraries:
 Note: This code accepts command line arguments therefore you will need to run this code on terminal. The IP address which is used here is of my metasploitable machine which is by default vulnerable therefore there are some ports open in this machine. If you will enter your PC/laptop's IP address then there are chances it will not show any ports open because of the firewalls and the anti-virus installed on our device.
 
 Here are some snippets regarding this projects: 
+
 
 ![Screenshot 2023-07-21 141435](https://github.com/SubodhBagde/Basic_Port_Scanner/assets/136182792/23130d6b-f0f1-4f84-85cc-de048a9aafda)
 ![Screenshot 2023-07-21 141451](https://github.com/SubodhBagde/Basic_Port_Scanner/assets/136182792/59f44da3-3a66-4074-a969-79fb3bd57524)
