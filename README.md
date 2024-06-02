@@ -11,10 +11,58 @@ Important libraries:
 
 Note: This code accepts command line arguments therefore you will need to run this code on terminal. The IP address which is used here is of my metasploitable machine which is by default vulnerable therefore there are some ports open in this machine. If you will enter your PC/laptop's IP address then there are chances it will not show any ports open because of the firewalls and the anti-virus installed on our device.
 
-Here are some snippets regarding this projects: 
 
 
-![Screenshot 2023-07-21 141435](https://github.com/SubodhBagde/Basic_Port_Scanner/assets/136182792/23130d6b-f0f1-4f84-85cc-de048a9aafda)
-![Screenshot 2023-07-21 141451](https://github.com/SubodhBagde/Basic_Port_Scanner/assets/136182792/59f44da3-3a66-4074-a969-79fb3bd57524)
+```
+import socket
+import sys
+import time
+import threading
+from datetime import datetime
+
+print("Python Port Scanner")
+start_time = time.time()
+if(len(sys.argv)) == 4:
+    target = socket.gethostbyname(sys.argv[1])
+else:
+    print("Invalid amount of arguements.")
+    print("Syntax: {Target IP address} Start_Port End_Port")
+    sys.exit()
+
+start_port = int(sys.argv[2])
+end_port = int(sys.argv[3])
+threads = []
+print("-" * 50)
+print("Scanning Target: "+target)
+print("Time Started: "+str(datetime.now()))
+print("-" * 50)
+
+try:
+    def scan_port(port):
+        s = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+        result = s.connect_ex((target,port))
+        socket.setdefaulttimeout(1)
+        if result == 0:
+            print(f"Port {port} is open")
+        s.close()
+    for port in range(start_port,end_port+1):
+            thread = threading.Thread(target = scan_port, args = (port,))
+            thread.start()
+            threads.append(thread)
+    for thread in threads:
+        thread.join()
+           
+except KeyboardInterrupt:
+     print("\nExiting Program.")
+     sys.exit()
+except socket.gaierror:
+     print("Hostname could not be resolved.")
+     sys.exit()
+end_time = time.time()
+print("Time Elapsed: ",end_time-start_time,"sec")
+print("-" * 50)
+
+```
+Here is the output of this program: 
 
 ![Screenshot 2023-07-21 143510](https://github.com/SubodhBagde/Basic_Port_Scanner/assets/136182792/5611016c-423f-4814-a2f2-f08c6af47388)
