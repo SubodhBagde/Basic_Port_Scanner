@@ -1,5 +1,7 @@
 # Basic_Port_Scanner
 
+> Identifies open ports in the target system.
+
 I developed this basic port scanner using concept of networking and python programming.
 
 A port scanner is basically a network tool which is used to identify open ports in the target system.
